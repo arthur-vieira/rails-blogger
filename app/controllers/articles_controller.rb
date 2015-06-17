@@ -5,6 +5,9 @@ class ArticlesController < ApplicationController
 	end
 	def show
 		@article = Article.find(params[:id])
+		
+		@comment = Comment.new
+		@comment.article_id = @article.id
 	end
 	def new
 		@article = Article.new
@@ -14,7 +17,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params) # Instead of the line below, create and use module ArticlesHelper
 			#@article = Article.new(params.require(:article).permit(:title, :body)) # require/permit help you declare which attributes you’d like to accept.
 			#@article = Article.new(params[:article]) # For security reasons, it’s not a good idea to blindly save parameters sent into us via the params hash.
-			# cleaning these commented lines up in just one single line (the line above)
+			# cleaning up these commented lines in just one single line (the line above)
 			#@article.title = params[:article][:title]
 			#@article.body = params[:article][:body]
 		@article.save
