@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+	before_filter :require_login, except: [:create] # haven't implemented index and destroy yet, but just in case...
+
 	include CommentsHelper
 	def create
 		@comment = Comment.new(comment_params)
